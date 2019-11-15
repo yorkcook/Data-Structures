@@ -1,7 +1,7 @@
 import sys
 sys.path.append('../queue_and_stack')
-# from dll_queue import Queue
-# from dll_stack import Stack
+from dll_queue import Queue
+from dll_stack import Stack
 
 
 class BinarySearchTree:
@@ -62,17 +62,71 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if node:
+            self.in_order_print(node.left)
+            print(node.value)
+            self.in_order_print(node.right)
+
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        # make stack
+        stack = []
+        # put the root in the stack
+        stack.append(node)
+
+        # while stack is not empty
+        while (len(stack) > 0):
+            # Pop the top item in the stack
+            node = stack.pop(0)
+            print(node.value)
+        # look right    
+        if node.right:
+            #push right to the stack
+            stack.append(node.right)
+        # look left    
+        if node.left:
+            # if there is a left, push to stack
+            stack.append(node.left)
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        # make queue
+        queue = []
+        # push root into queue
+        queue.append(node)
+
+        # while queue not empty
+        while (len(queue) > 0):
+            print(queue[0].value)
+            node = queue.pop(0)
+            #if left 
+            if node.left:
+                #add left to back
+                queue.append(node.left)
+            #if right
+            if node.right:
+                #add right to back
+                queue.append(node.right)
+
+
+   
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
